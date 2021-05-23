@@ -2,7 +2,7 @@ FROM golang:1.15.5
 RUN mkdir -p /app
 COPY . /app
 WORKDIR /app/
-RUN go mod tidy
+RUN export GOPROXY=https://goproxy.io,direct && go mod tidy
 RUN CGO_ENABLED=0 go build -mod=vendor -a -installsuffix cgo -o YQBlog .
 
 FROM alpine
