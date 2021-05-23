@@ -3,7 +3,7 @@ RUN mkdir -p /app
 COPY . /app
 WORKDIR /app/
 RUN export GOPROXY=https://goproxy.io,direct && go mod tidy
-RUN CGO_ENABLED=0 go build -mod=vendor -a -installsuffix cgo -o YQBlog .
+RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o YQBlog .
 
 FROM alpine
 MAINTAINER YQBlog
