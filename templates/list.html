@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .name }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-size: 13px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', sans-serif;
+        }
+        ol,ul {
+            list-style: none;
+        }
+        a {
+            color: #fe6a00;
+            text-decoration: none;
+        }
+        @media (min-width:1300px) {
+            #header_item .logo img {
+                width: 206px;
+                height: 36px;
+                margin: 22px 0;
+            }
+            #header_index .searchbox {
+                width: 200px;
+            }
+            #header_index .searchbox input.box {
+                width: 164px;
+            }
+            #projectList #maincontent,.news-content {
+                width: 984px;
+            }
+            .abox-content iframe,.abox-content img  {
+                width: 819px !important;
+            }
+        }
+        .news-content {
+            margin: 0 auto;
+            width: 884px;
+            min-height: 600px;
+            background: #FFF;
+        }
+        a:hover {
+            color: #f16500;
+            text-decoration: none;
+        }
+        .archive-content li {
+            margin: 0 auto;
+            height: 30px;
+            line-height: 30px;
+            padding: 10px 0;
+            border-bottom: 1px dashed #DDD;
+        }
+        .archive-content li h4 {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .archive-list span {
+            float: right;
+            font-size: 13px;
+            color: #666;
+        }
+        .news-page {
+            padding: 40px;
+        }
+        .page-header h2 {
+            border-bottom: 1px solid #DDD;
+            font-size: 24px;
+            font-weight: 500;
+            color: #333;
+            padding-bottom: 10px;
+        }
+        .page-header .intro {
+            font-size: 16px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .pagination em {
+            display: inline-block;
+            min-width: 40px;
+            height: 32px;
+            line-height: 32px;
+            background-color: #FFF;
+            font-style: normal;
+            color: #fe6a00;
+            margin-right: 3px;
+            border: 1px solid #DDD;
+            border-radius: 2px;
+        }
+        .pagination strong {
+            display: inline-block;
+            min-width: 40px;
+            height: 32px;
+            margin-left: 3px;
+            line-height: 32px;
+            color: #fe6a00;
+        }
+        .pagination a {
+            display: inline-block;
+            min-width: 40px;
+            height: 32px;
+            margin-left: 5px;
+            line-height: 32px;
+            border: 1px solid #DDD;
+            background-color: #FFF;
+            color: #333;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+        .pagination a:hover {
+            background: #fe6a00;
+            border: 1px solid #fe6a00;
+            color: #FFF;
+            text-decoration: none;
+        }
+        .round_icon{
+            width: 99px;
+            height: 99px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="archive-content news-content">
+    <img style="text-align: center;" src="https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg" class="round_icon">
+    <p style="text-align: center">{{ .blog.Title }}</p>
+    <div class="news-page">
+        <div class="page-header">
+            <h2>知识库: {{ .name }}</h2>
+        </div>
+        <div class="archive-list">
+            <ul>
+                {{range $i, $v := .docs.Data}}
+                    <li><h4><a href="/Doc/{{ $.repo }}/{{ $v.Slug }}" title="{{ $v.Title }}">{{ $v.Title }} <span>{{ $v.UpdatedAt }}</span></a></h4></li>
+                {{end}}
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

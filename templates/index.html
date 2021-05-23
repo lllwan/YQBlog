@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .blog.Title }}</title>
+    <meta name="description" content="{{ .blog.Description }}">
+    <meta name="keywords" content="{{ .blog.Keywords }}">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        #container{
+            /*保证footer是相对于container位置绝对定位*/
+            position:relative;
+            width:100%;
+            min-height:100%;
+            /*设置padding-bottom值大于等于footer的height值，以保证main的内容能够全部显示出来而不被footer遮盖；*/
+            padding-bottom: 100px;
+            box-sizing: border-box;
+        }
+        .main{
+            position: absolute;
+            top: 25%;
+            width: 100%;
+            height: 200px;
+        }
+        footer{
+            width: 100%;
+            height:100px;   /* footer的高度一定要是固定值*/
+            position:absolute;
+            bottom:0px;
+            left:0px;
+            text-align: center;
+            color: #999;
+        }
+        .round_icon{
+            width: 99px;
+            height: 99px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="main">
+        <img style="text-align: center;" src="https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg" class="round_icon">
+        <h1 style="text-align: center;">{{ .blog.Title }}</h1>
+        <h3 style="text-align: center;">{{ .blog.Subtitle }}</h3>
+        <hr style="margin: 10px auto">
+        <div style="text-align: center;">
+        {{range $i, $v := .repos}}
+            <button style="margin-right: 5px" onclick="window.location.href='/DocList/{{ $v.Repo }}'">{{ $v.Name }}</button>
+        {{end}}
+        </div>
+    </div >
+    <footer>
+        <p>@2021 浙ICP备15022898号</p>
+    </footer>
+</div>
+</body>
+</html>
