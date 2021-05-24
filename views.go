@@ -41,6 +41,7 @@ func (y Config) DocList(g *gin.Context) {
 	docs, err := y.ListRepoDoc(fmt.Sprintf("%s/%s", y.YuQue.User, repo))
 	if err != nil{
 		g.JSON(403, err.Error())
+		return
 	}
 	for _, v := range y.YuQue.Repos {
 		if v.Repo == repo {

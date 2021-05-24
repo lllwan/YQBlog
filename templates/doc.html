@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>{{ .detail.Data.Title }}</title>
     <meta name="description" content="{{ $.detail.Data.Description }}">
+    <link rel="stylesheet" href="https://unpkg.com/vssue/dist/vssue.min.css">
+    <script src="https://unpkg.com/vue/dist/vue.runtime.min.js"></script>
+    <script src="https://unpkg.com/vssue/dist/vssue.github.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
     <link rel="stylesheet" type="text/css" href="http://editor.yuque.com/ne-editor/lake-content-v1.css">
@@ -21,6 +24,8 @@
         <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
     </div>
     {{ .doc }}
+    <hr>
+    <div id="vssue"></div>
 </div>
 <script>
     window.onload = function() {
@@ -29,6 +34,26 @@
             hljs.highlightBlock(aCodes[i]);
         }
     };
+</script>
+<script>
+    new Vue({
+        el: '#vssue',
+
+        render: h => h('Vssue', {
+            props: {
+                // 在这里设置当前页面对应的 Issue 标题
+                title: 'Vssue Dev',
+
+                // 在这里设置你使用的平台的 OAuth App 配置
+                options: {
+                    owner: 'lllwan',
+                    repo: 'blog',
+                    clientId: '09eeffc286cdadadfdd3',
+                    clientSecret: '0dfe8df6aa8ae71ac520427680777fa328b3c277', // 只有在使用某些平台时需要
+                },
+            }
+        })
+    })
 </script>
 </body>
 </html>
