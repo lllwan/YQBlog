@@ -15,10 +15,45 @@
             max-width: 100%;
             max-height: 100%;
         }
+        .side-button {
+            width: 60px;
+            height: 30px;
+            display: block;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            background: #FF9966;
+            color: #FFFFFF;
+            border: #FFFFFF;
+        }
+        .side {
+            position: fixed;
+            top: 30%;
+            right: 100px;
+            margin-top: -100px;
+            padding: 5px 5px;
+            /*border-style:solid;*/
+            /*border-width:1px;*/
+            border-radius: 5px;
+        }
+        .round_icon{
+            width: 50px;
+            height: 50px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 10px auto;
+        }
     </style>
 </head>
 <body>
-<div style="width: 70%;margin-left: auto;margin-right: auto;">
+<div class="side">
+    <img style="text-align: center;" src="https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg" class="round_icon">
+    <button class="side-button" onclick="window.location.href='/'">首页</button>
+    <button class="side-button" onclick="window.location.href='/DocList/{{ .detail.Data.Book.Slug }}'">知识库</button>
+</div>
+<div style="width: 60%;margin-left: auto;margin-right: auto;">
     <div>
         <h1>{{ .detail.Data.Title }}</h1>
         <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
@@ -42,14 +77,14 @@
         render: h => h('Vssue', {
             props: {
                 // 在这里设置当前页面对应的 Issue 标题
-                title: 'Vssue Dev',
+                title: '{{ .detail.Data.Slug }}',
 
                 // 在这里设置你使用的平台的 OAuth App 配置
                 options: {
-                    owner: 'lllwan',
-                    repo: 'blog',
-                    clientId: '09eeffc286cdadadfdd3',
-                    clientSecret: '0dfe8df6aa8ae71ac520427680777fa328b3c277', // 只有在使用某些平台时需要
+                    owner: '{{ .vssue.Owner }}',
+                    repo: '{{ .vssue.Repo }}',
+                    clientId: '{{ .vssue.ClientId }}',
+                    clientSecret: '{{ .vssue.ClientSecret }}', // 只有在使用某些平台时需要
                 },
             }
         })

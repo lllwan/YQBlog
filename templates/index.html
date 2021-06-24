@@ -55,10 +55,10 @@
         <img style="text-align: center;" src="https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg" class="round_icon">
         <h1 style="text-align: center;">{{ .blog.Title }}</h1>
         <h3 style="text-align: center;">{{ .blog.Subtitle }}</h3>
-        <hr style="margin: 10px auto">
+        <hr style="margin: 20px auto">
         <div style="text-align: center;">
         {{range $i, $v := .repos}}
-            <button style="margin-right: 5px" onclick="window.location.href='/DocList/{{ $v.Repo }}'">{{ $v.Name }}</button>
+            <button style="margin-right: 5px;background-color: white;color: black;border: 2px solid #DDDDDD;border-radius: 5px;padding: 2px 2px" onclick="window.location.href='/DocList/{{ $v.Repo }}'">{{ $v.Name }}</button>
         {{end}}
         </div>
     </div >

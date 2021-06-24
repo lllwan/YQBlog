@@ -74,5 +74,6 @@ func (y Config) Doc(g *gin.Context) {
 		"doc": template.HTML(html),
 		"detail": detail,
 		"index": g.Request.Host,
+		"vssue": y.Blog.Vssue,
 	})
 }
