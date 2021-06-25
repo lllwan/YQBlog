@@ -5,11 +5,6 @@ type Repo struct {
 	Repo string					`yaml:"repo"`
 }
 
-type Links struct {
-	Name string					`yaml:"name"`
-	Url string					`yaml:"url"`
-}
-
 type Vssue struct {
 	Owner string				`yaml:"owner"`
 	Repo string					`yaml:"repo"`
@@ -23,7 +18,6 @@ type Blog struct {
 	Keywords 		string		`yaml:"keywords"`
 	Description 	string		`yaml:"description"`
 	Author 			string		`yaml:"author"`
-	Links 			[]Links		`yaml:"links"`
 	Vssue 			Vssue		`yaml:"vssue"`
 }
 
@@ -32,6 +26,7 @@ type YuQue struct {
 	Token 	string		`yaml:"token"`
 	User 	string		`yaml:"user"`
 	Repos 	[]Repo		`yaml:"repos"`
+	Link 	string 		`yaml:"link"`
 }
 
 type Manage struct {
@@ -39,6 +34,7 @@ type Manage struct {
 	HttpPort    string		`yaml:"httpPort"`
 	HttpsPort   string		`yaml:"httpsPort"`
 	Domain 		string 		`yaml:"domain"`
+	Theme 		string 		`yaml:"theme"`
 
 }
 

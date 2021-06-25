@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/wujiyu115/yuqueg"
 	"html/template"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"strings"
 )
 
 func (y Config) ServeHTTP(uri string, w http.ResponseWriter, r *http.Request) {
@@ -38,15 +40,25 @@ func (y Config) GetRepos(g *gin.Context) {
 
 func (y Config) DocList(g *gin.Context) {
 	repo :=  g.Param("repo")
-	docs, err := y.ListRepoDoc(fmt.Sprintf("%s/%s", y.YuQue.User, repo))
+	detail, err := y.ListRepoDoc(fmt.Sprintf("%s/%s", y.YuQue.User, repo))
 	if err != nil{
 		g.JSON(403, err.Error())
 		return
 	}
+	if y.YuQue.Link != "" {
+		var docs []yuqueg.DocBookDetail
+		slug := strings.Split(y.YuQue.Link, "/")[1]
+		for _, v := range detail.Data {
+			if v.Slug != slug {
+				docs = append(docs, v)
+			}
+		}
+		detail.Data = docs
+	}
 	for _, v := range y.YuQue.Repos {
 		if v.Repo == repo {
 			g.HTML(200, "list.html", gin.H{
-				"docs": docs,
+				"docs": detail,
 				"repo": repo,
 				"name": v.Name,
 				"blog": y.Blog,

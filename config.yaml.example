@@ -1,0 +1,35 @@
+---
+yuque:
+  api: "https://www.yuque.com/api/v2"
+  token: "you yuque token"
+  user: "yuque id"
+  link: "bua6cb/lr13qd"   # 外链文章repo及slug
+  repos:
+    - name: "运维笔记"
+      repo: "kkgfxm"   # 语雀仓库Id
+    - name: "云原生"
+      repo: "ooa19f"
+    - name: "DIY搞事情"
+      repo: "bua6cb"
+    - name: "开开脑洞"
+      repo: "ussmi8"
+blog:
+  title: "WangXun`s Blog"  #
+  subtitle: "大道至简"
+  keywords: "页面keywords"
+  description: "页面description"
+  author: "WangXun"
+  links:
+    - name: ""
+      url: ""
+  vssue:
+    owner: "lllwan"
+    repo: "blog"
+    clientId: "09eeffc286cdadadfdd3"
+    clientSecret: "0dfe8df6aa8ae71ac520427680777fa328b3c277"
+
+manage:
+  autoSSL: false
+  httpPort: 80
+  httpsPort: 443
+  theme: default
