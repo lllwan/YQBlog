@@ -18,6 +18,6 @@ RUN mkdir -p /app/templates
 WORKDIR /app/
 COPY --from=0 /app/YQBlog /app/YQBlog
 COPY --from=0 /app/config.yaml /app/config.yaml
-COPY --from=0 /app/templates/* /app/templates/
+COPY --from=0 /app/themes/* /app/templates/
 RUN chmod +x YQBlog
 CMD /app/YQBlog
