@@ -1,0 +1,12 @@
+version: '2'
+services:
+  changepw:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: yqblog:latest
+    ports:
+      - "9999:80"
+    volumes:
+      - "config.yaml:/app/config.yaml"
+    restart: unless-stopped
