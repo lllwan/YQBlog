@@ -43,7 +43,7 @@ func main () {
 		m := autocert.Manager{
 			Prompt:     autocert.AcceptTOS,
 			Cache:      autocert.DirCache(".cache"),
-			HostPolicy: HostWhitelist(),
+			HostPolicy: c.HostWhitelist(),
 		}
 		server := &http.Server{
 			Addr: fmt.Sprintf(":%s", c.Manage.HttpsPort),
