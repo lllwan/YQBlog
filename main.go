@@ -1,31 +1,14 @@
 package main
 
 import (
-	"context"
 	"crypto/tls"
-	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/acme/autocert"
 	"golang.org/x/net/http2"
 	"log"
 	"net/http"
-	"strings"
 )
-
-func (c Config) HostWhitelist() autocert.HostPolicy {
-	return func(_ context.Context, host string) error {
-		if host == strings.ToLower(strings.ReplaceAll(c.Manage.Domain, " ", "")) {
-			return nil
-		}
-		return errors.New("非法请求！")
-	}
-}
-
-func Redirect(w http.ResponseWriter, r *http.Request){
-	log.Println(r.RemoteAddr, r.Method, r.Host, r.URL.Path, r.URL.Scheme)
-	http.Redirect(w, r, fmt.Sprintf("https://%s%s", r.Host, r.URL.Path), http.StatusFound)
-}
 
 func main () {
 	c, err := ReadYamlConfig("config.yaml")
@@ -39,12 +22,19 @@ func main () {
 	r.GET("/Doc/:repo/:slug", c.Doc)
 	r.GET("/yuque/*path", c.CDNProxy)
 	if c.Manage.AutoSSL {
-		go http.ListenAndServe(fmt.Sprintf(":%s", c.Manage.HttpPort), http.HandlerFunc(Redirect))
+		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Strict-Transport-Security", "max-age=15768000 ; includeSubDomains")
+			fmt.Fprintf(w, "Hello, HTTPS world!")
+		})
 		m := autocert.Manager{
 			Prompt:     autocert.AcceptTOS,
 			Cache:      autocert.DirCache(".cache"),
-			HostPolicy: c.HostWhitelist(),
+			HostPolicy: autocert.HostWhitelist(c.Manage.Domain),
 		}
+		go func() {
+			log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", c.Manage.HttpPort), m.HTTPHandler(nil)))
+		}()
+
 		server := &http.Server{
 			Addr: fmt.Sprintf(":%s", c.Manage.HttpsPort),
 			TLSConfig: &tls.Config{
