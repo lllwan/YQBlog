@@ -14,7 +14,7 @@ RUN apk update \
         ca-certificates \
         && update-ca-certificates 2>/dev/null || true
 RUN apk add --no-cache tzdata
-RUN mkdir -p /app/templates
+RUN mkdir -p /app/themes
 WORKDIR /app/
 COPY --from=0 /app/YQBlog /app/YQBlog
 COPY --from=0 /app/config.yaml /app/config.yaml
