@@ -7,6 +7,7 @@ services:
     image: yqblog:latest
     ports:
       - "9999:80"
+      - "443:443"
     volumes:
       - "./config.yaml:/app/config.yaml"
     restart: unless-stopped
