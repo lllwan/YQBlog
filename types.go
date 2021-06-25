@@ -37,7 +37,8 @@ type YuQue struct {
 type Manage struct {
 	AutoSSL 	bool		`yaml:"autoSSL"`
 	HttpPort    string		`yaml:"httpPort"`
-	HttpsPort    string		`yaml:"httpsPort"`
+	HttpsPort   string		`yaml:"httpsPort"`
+	Domain 		string 		`yaml:"domain"`
 
 }
 

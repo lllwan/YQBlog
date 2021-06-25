@@ -10,11 +10,12 @@ import (
 	"golang.org/x/net/http2"
 	"log"
 	"net/http"
+	"strings"
 )
 
-func HostWhitelist() autocert.HostPolicy {
+func (c Config) HostWhitelist() autocert.HostPolicy {
 	return func(_ context.Context, host string) error {
-		if host == "" {
+		if host == strings.ToLower(strings.ReplaceAll(c.Manage.Domain, " ", "")) {
 			return nil
 		}
 		return errors.New("非法请求！")
