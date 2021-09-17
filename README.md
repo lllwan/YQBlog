@@ -13,7 +13,7 @@
 + YQBlog一次部署好之后，可以遗忘， 专注的创作即可。博客内容写作即所得。
 
 ### 功能介绍
-+ [Demo](https://wanguxn.tech)
++ [Demo](https://wangxun.tech/)
 + 基于语雀文档开放API实现， 在语雀中编辑文档，博客即所得。
 + 自动维护https证书，通过autoSSL参数控制https开关
 + 支持主题， 虽然目前仅有唯一的一个极简(懒)主题，其实YQBlog的主题很容易做， 参照themes中的四个html文件的实现即可。欢迎贡献。
