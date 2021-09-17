@@ -25,8 +25,8 @@ blog:
   vssue:
     owner: "lllwan"
     repo: "blog"
-    clientId: "09eeffc286cdadadfdd3"
-    clientSecret: "0dfe8df6aa8ae71ac520427680777fa328b3c277"
+    clientId: "xxxxx"
+    clientSecret: "xxxxx"
 
 manage:
   autoSSL: false
