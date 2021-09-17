@@ -16,30 +16,30 @@ func verify(c *Config) {
 	if len(c.YuQue.Repos) == 0 {
 		log.Fatal("请至少指定一个repo!")
 	}
-	if _, err := c.ListRepoDoc(fmt.Sprintf("%s/%s", c.YuQue.User, c.YuQue.Repos[0].Repo));err != nil{
+	if _, err := c.ListRepoDoc(fmt.Sprintf("%s/%s", c.YuQue.User, c.YuQue.Repos[0].Repo)); err != nil {
 		log.Fatal("读取doc列表失败:", err)
 	}
 	if c.YuQue.Link != "" {
 		link := strings.Split(c.YuQue.Link, "/")
-		if c.YuQue.Link != "" && len(link) != 2{
+		if c.YuQue.Link != "" && len(link) != 2 {
 			log.Fatal("link配置有误，link配置的正确格式应该为知识库/文档slug 例如：bua6cb/lr13qd")
 		}
-		if _, err := c.GetDoc(fmt.Sprintf("%s/%s", c.YuQue.User, link[0]), link[1]);err != nil{
+		if _, err := c.GetDoc(fmt.Sprintf("%s/%s", c.YuQue.User, link[0]), link[1]); err != nil {
 			log.Fatal("link文档读取有误：", err)
 		}
 	}
 }
 
-func main () {
+func main() {
 	c, err := ReadYamlConfig("config.yaml")
-	if err != nil{
+	if err != nil {
 		log.Fatal("配置文件解析失败: ", err.Error())
 	}
 	verify(c)
 	if c.Manage.Theme == "" {
 		c.Manage.Theme = "default"
 	}
-	if _, err := os.Stat(fmt.Sprintf("themes/%s/index.html", c.Manage.Theme));err != nil{
+	if _, err := os.Stat(fmt.Sprintf("themes/%s/index.html", c.Manage.Theme)); err != nil {
 		log.Fatal("未找到主题！")
 	}
 	r := gin.Default()
@@ -65,7 +65,7 @@ func main () {
 				NextProtos:     []string{http2.NextProtoTLS, "http/1.1"},
 				MinVersion:     tls.VersionTLS12,
 			},
-			Handler: r,
+			Handler:        r,
 			MaxHeaderBytes: 32 << 20,
 		}
 		log.Fatal(server.ListenAndServeTLS("", ""))

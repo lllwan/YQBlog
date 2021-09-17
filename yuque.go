@@ -8,17 +8,19 @@ import (
 	"strings"
 )
 
-func ReadYamlConfig(path string)  (*Config,error){
+func ReadYamlConfig(path string) (*Config, error) {
 	conf := &Config{}
 	if f, err := os.Open(path); err != nil {
-		return nil,err
+		return nil, err
 	} else {
-		yaml.NewDecoder(f).Decode(conf)
+		if err := yaml.NewDecoder(f).Decode(conf); err != nil {
+			return conf, err
+		}
 	}
-	return  conf, nil
+	return conf, nil
 }
 
-func (y Config) Client()*yuqueg.Service {
+func (y Config) Client() *yuqueg.Service {
 	return yuqueg.NewService(y.YuQue.Token)
 }
 
@@ -26,7 +28,7 @@ func (y Config) ListRepo(user string, data map[string]string) (yuqueg.UserRepos,
 	return y.Client().Repo.List(user, "", data)
 }
 
-func (y Config) ListRepoDoc(namespace string) (yuqueg.BookDetail, error){
+func (y Config) ListRepoDoc(namespace string) (yuqueg.BookDetail, error) {
 	return y.Client().Doc.List(namespace)
 }
 
@@ -40,8 +42,8 @@ func (y Config) GetDocHTML(detail yuqueg.DocDetail) (string, error) {
 }
 
 func (y Config) GetDocHTMLUseProxy(detail yuqueg.DocDetail, host string) (string, error) {
-	html, err  := y.GetDocHTML(detail)
-	if err != nil{
+	html, err := y.GetDocHTML(detail)
+	if err != nil {
 		return "", err
 	}
 	// 通过替换html中的cdn链接进行反向代理避免跨域问题。

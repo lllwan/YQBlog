@@ -34,14 +34,14 @@ func (y Config) CDNProxy(g *gin.Context) {
 func (y Config) GetRepos(g *gin.Context) {
 	g.HTML(200, "index.html", gin.H{
 		"repos": y.YuQue.Repos,
-		"blog": y.Blog,
+		"blog":  y.Blog,
 	})
 }
 
 func (y Config) DocList(g *gin.Context) {
-	repo :=  g.Param("repo")
+	repo := g.Param("repo")
 	detail, err := y.ListRepoDoc(fmt.Sprintf("%s/%s", y.YuQue.User, repo))
-	if err != nil{
+	if err != nil {
 		g.JSON(403, err.Error())
 		return
 	}
@@ -73,19 +73,19 @@ func (y Config) Doc(g *gin.Context) {
 	repo := g.Param("repo")
 	slug := g.Param("slug")
 	detail, err := y.GetDoc(fmt.Sprintf("%s/%s", y.YuQue.User, repo), slug)
-	if err != nil{
+	if err != nil {
 		g.JSON(403, err.Error())
 		return
 	}
 	html, err := y.GetDocHTMLUseProxy(detail, g.Request.Host)
-	if err != nil{
+	if err != nil {
 		g.JSON(403, err.Error())
 		return
 	}
 	g.HTML(200, "doc.html", gin.H{
-		"doc": template.HTML(html),
+		"doc":    template.HTML(html),
 		"detail": detail,
-		"index": g.Request.Host,
-		"vssue": y.Blog.Vssue,
+		"index":  g.Request.Host,
+		"vssue":  y.Blog.Vssue,
 	})
 }
