@@ -10,4 +10,5 @@ services:
       - "443:443"
     volumes:
       - "./config.yaml:/app/config.yaml"
+      - "cache:/app/.cache"
     restart: unless-stopped
