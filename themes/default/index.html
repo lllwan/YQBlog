@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>{{ .blog.Title }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
     <meta name="description" content="{{ .blog.Description }}">
     <meta name="keywords" content="{{ .blog.Keywords }}">
     <style>
@@ -13,6 +12,9 @@
             padding: 0;
         }
         html,body{
+            font-size:16px;
+            font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+            -webkit-font-smoothing: antialiased;
             height: 100%;
         }
         #container{
@@ -39,8 +41,8 @@
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
         }
         .round_icon{
-            width: 99px;
-            height: 99px;
+            width: 166px;
+            height: 166px;
             display: flex;
             border-radius: 50%;
             align-items: center;
@@ -54,19 +56,21 @@
 <div id="container">
     <div class="main">
         <img style="text-align: center;" src="https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg" class="round_icon">
-        <h1 style="text-align: center;">{{ .blog.Title }}</h1>
-        <h3 style="text-align: center;">{{ .blog.Subtitle }}</h3>
-        <div style="margin-right: auto;margin-left: auto;text-align: center;margin-top: 10px;font-size: 30px">
+        <h1 style="text-align: center;margin-bottom: 5px">{{ .blog.Title }}</h1>
+        <h4 style="text-align: center; color: #595959">{{ .blog.Subtitle }}</h4>
+        <div style="margin-right: auto;margin-left: auto;text-align: center;margin-top: 10px;font-size: 25px">
             <a href="https://github.com/lllwan" target="_blank"><i class="bi-github" role="img" aria-label="GitHub"></i></a>
         </div>
         <hr style="margin: 10px auto">
         <div style="text-align: center;">
         {{range $i, $v := .repos}}
-            <button style="margin-right: 5px;background-color: white;color: black;border: 2px solid #DDDDDD;border-radius: 5px;padding: 2px 2px" onclick="window.location.href='/DocList/{{ $v.Repo }}'">{{ $v.Name }}</button>
+            <button style="margin-right: 5px;background-color: white;color: black;border: 2px solid #DDDDDD;border-radius: 5px;padding: 2px 5px" onclick="window.location.href='/DocList/{{ $v.Repo }}'">{{ $v.Name }}</button>
         {{end}}
         </div>
     </div >
-    {{template "footer.html"}}
+    <div id="footer">
+        {{template "footer.html"}}
+    </div>
 </div>
 </body>
 </html>

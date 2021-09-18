@@ -14,6 +14,7 @@ type Vssue struct {
 
 type Blog struct {
 	Title       string `yaml:"title"`
+	Avatar      string `yaml:"avatar"`
 	Subtitle    string `yaml:"subtitle"`
 	Keywords    string `yaml:"keywords"`
 	Description string `yaml:"description"`
@@ -21,12 +22,17 @@ type Blog struct {
 	Vssue       Vssue  `yaml:"vssue"`
 }
 
+type Links struct {
+	Name string `yaml:"name"`
+	Link string `yaml:"link"`
+}
+
 type YuQue struct {
-	Api   string `yaml:"api"`
-	Token string `yaml:"token"`
-	User  string `yaml:"user"`
-	Repos []Repo `yaml:"repos"`
-	Link  string `yaml:"link"`
+	Api   string  `yaml:"api"`
+	Token string  `yaml:"token"`
+	User  string  `yaml:"user"`
+	Repos []Repo  `yaml:"repos"`
+	Link  []Links `yaml:"link"`
 }
 
 type Manage struct {

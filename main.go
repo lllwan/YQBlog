@@ -9,7 +9,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 )
 
 func verify(c *Config) {
@@ -18,15 +17,6 @@ func verify(c *Config) {
 	}
 	if _, err := c.ListRepoDoc(fmt.Sprintf("%s/%s", c.YuQue.User, c.YuQue.Repos[0].Repo)); err != nil {
 		log.Fatal("读取doc列表失败:", err)
-	}
-	if c.YuQue.Link != "" {
-		link := strings.Split(c.YuQue.Link, "/")
-		if c.YuQue.Link != "" && len(link) != 2 {
-			log.Fatal("link配置有误，link配置的正确格式应该为知识库/文档slug 例如：bua6cb/lr13qd")
-		}
-		if _, err := c.GetDoc(fmt.Sprintf("%s/%s", c.YuQue.User, link[0]), link[1]); err != nil {
-			log.Fatal("link文档读取有误：", err)
-		}
 	}
 }
 

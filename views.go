@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"strings"
 )
 
 func (y Config) ServeHTTP(uri string, w http.ResponseWriter, r *http.Request) {
@@ -35,6 +34,7 @@ func (y Config) GetRepos(g *gin.Context) {
 	g.HTML(200, "index.html", gin.H{
 		"repos": y.YuQue.Repos,
 		"blog":  y.Blog,
+		"links": y.YuQue.Link,
 	})
 }
 
@@ -45,21 +45,17 @@ func (y Config) DocList(g *gin.Context) {
 		g.JSON(403, err.Error())
 		return
 	}
-	if y.YuQue.Link != "" {
-		var docs []yuqueg.DocBookDetail
-		slug := strings.Split(y.YuQue.Link, "/")[1]
-		for _, v := range detail.Data {
-			if v.Slug != slug {
-				docs = append(docs, v)
-			}
-		}
-		detail.Data = docs
+	var docs []yuqueg.DocBookDetail
+	for _, v := range detail.Data {
+		docs = append(docs, v)
 	}
+	detail.Data = docs
 	for _, v := range y.YuQue.Repos {
 		if v.Repo == repo {
 			g.HTML(200, "list.html", gin.H{
 				"docs": detail,
 				"repo": repo,
+				"links": y.YuQue.Link,
 				"name": v.Name,
 				"blog": y.Blog,
 			})
