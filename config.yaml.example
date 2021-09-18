@@ -3,9 +3,6 @@ yuque:
   api: "https://www.yuque.com/api/v2"
   token: "you yuque token"
   user: "yuque id"
-  link:
-    - name: "google"
-    - link: "https://www.google.com"
   repos:
     - name: "运维笔记"
       repo: "kkgfxm"   # 语雀仓库Id
@@ -16,14 +13,15 @@ yuque:
     - name: "开开脑洞"
       repo: "ussmi8"
 blog:
-  title: "WangXun`s Blog"  #
+  title: "WangXun`s Blog"
   subtitle: "大道至简"
   keywords: "页面keywords"
+  avatar: "https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg"
   description: "页面description"
   author: "WangXun"
-  links:
-    - name: ""
-      url: ""
+  link:
+      - name: "google"
+      - link: "https://www.google.com"
   vssue:
     owner: "lllwan"
     repo: "blog"
