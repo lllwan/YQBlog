@@ -20,6 +20,7 @@ type Blog struct {
 	Description string `yaml:"description"`
 	Author      string `yaml:"author"`
 	Vssue       Vssue  `yaml:"vssue"`
+	Link  []Links `yaml:"link"`
 }
 
 type Links struct {
@@ -32,7 +33,6 @@ type YuQue struct {
 	Token string  `yaml:"token"`
 	User  string  `yaml:"user"`
 	Repos []Repo  `yaml:"repos"`
-	Link  []Links `yaml:"link"`
 }
 
 type Manage struct {

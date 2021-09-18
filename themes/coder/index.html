@@ -498,7 +498,7 @@
                 <span style="color: blue;">~</span>
                 <span style="color: rgb(39, 39, 39);">./links.sh</span>
                 <ul class="ul">
-                    {{range $i, $v := .links}}
+                    {{range $i, $v := .blog.Link}}
                     <li><a href="{{ $v.Link }}" target="_blank">{{ $v.Name }}</a></li>
                     {{end}}
                 </ul>

@@ -34,7 +34,6 @@ func (y Config) GetRepos(g *gin.Context) {
 	g.HTML(200, "index.html", gin.H{
 		"repos": y.YuQue.Repos,
 		"blog":  y.Blog,
-		"links": y.YuQue.Link,
 	})
 }
 
@@ -55,7 +54,6 @@ func (y Config) DocList(g *gin.Context) {
 			g.HTML(200, "list.html", gin.H{
 				"docs": detail,
 				"repo": repo,
-				"links": y.YuQue.Link,
 				"name": v.Name,
 				"blog": y.Blog,
 			})

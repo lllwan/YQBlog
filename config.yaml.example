@@ -3,7 +3,9 @@ yuque:
   api: "https://www.yuque.com/api/v2"
   token: "you yuque token"
   user: "yuque id"
-  link: "bua6cb/lr13qd"   # 外链文章repo及slug
+  link:
+    - name: "google"
+    - link: "https://www.google.com"
   repos:
     - name: "运维笔记"
       repo: "kkgfxm"   # 语雀仓库Id
