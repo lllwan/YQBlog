@@ -29,11 +29,15 @@ func main() {
 	if c.Manage.Theme == "" {
 		c.Manage.Theme = "default"
 	}
-	if _, err := os.Stat(fmt.Sprintf("themes/%s/index.html", c.Manage.Theme)); err != nil {
+	if _, err := os.Stat(fmt.Sprintf("themes/%s/templates/index.html", c.Manage.Theme)); err != nil {
 		log.Fatal("未找到主题！")
 	}
 	r := gin.Default()
-	r.LoadHTMLGlob(fmt.Sprintf("themes/%s/*", c.Manage.Theme))
+	r.LoadHTMLGlob(fmt.Sprintf("themes/%s/templates/*", c.Manage.Theme))
+	static := fmt.Sprintf("themes/%s/static", c.Manage.Theme)
+	if _, ok := os.Stat(static);ok == nil{
+		r.Static("/static", static)
+	}
 	r.GET("/", c.GetRepos)
 	r.GET("/DocList/:repo", c.DocList)
 	r.GET("/Doc/:repo/:slug", c.Doc)

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .name }}</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<div id="box">
+    <div id="cmdBoxCenter">
+        <!-- 第一个终端 -->
+        <div class="cmdCenter">
+            <!-- 三个按钮 -->
+            <div class="click">
+                <div class="red"></div>
+                <div class="yellow"></div>
+                <div class="green"></div>
+            </div>
+            <!-- 顶部标题 -->
+            <div class="title">
+                <span>知识库 - {{ .name }}</span>
+            </div>
+            <!-- 终端内文字 -->
+            <div class="cmdText">
+                <ul id="article">
+                    {{range $i, $v := .docs.Data}}
+                    <li onclick="window.open('/Doc/{{ $.repo }}/{{ $v.Slug }}')">
+                        <img src="https://source.unsplash.com/featured/?technology,{{ $i }}" class="cover"/>
+                        <h3>{{ $v.Title }}</h3>
+                        <p>{{$v.Description}}</p>
+                        <p style="color: #595959">{{ $v.UpdatedAt }}</p>
+                    </li>
+                    {{end}}
+                </ul>
+<!--                <span style="color: rgb(0, 190, 0);">root@wangxun</span>-->
+<!--                <span style="color: blue;">~</span>-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

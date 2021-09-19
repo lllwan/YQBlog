@@ -2,55 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .detail.Data.Title }}</title>
     <meta name="description" content="{{ $.detail.Data.Description }}">
-<!--    <link href="https://cdn.bootcdn.net/ajax/libs/bulma/0.9.3/css/bulma.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="../../static/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/vssue/dist/vssue.min.css">
     <script src="https://unpkg.com/vue/dist/vue.runtime.min.js"></script>
     <script src="https://unpkg.com/vssue/dist/vssue.github.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-<!--    <link rel="stylesheet" type="text/css" href="https://editor.yuque.com/ne-editor/lake-content-v1.css">-->
     <style>
-        html,body{
-            font-size:16px;
-            font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-            -webkit-font-smoothing: antialiased;
-            height: 100%;
-        }
-        img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        .side-button {
-            font-size: 8px;
-            margin-bottom: 2px;
-            background-color: white;
-            border-radius: 10px;
-            border: 2px solid rgb(221, 221, 221);
-            /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
-        }
-        .side {
-            position: fixed;
-            top: 30%;
-            right: 100px;
-            margin-top: -100px;
-            padding: 5px 5px;
-            /*border-style:solid;*/
-            /*border-width:1px;*/
-            border-radius: 5px;
-            display: grid;
-        }
-        .round_icon{
-            width: 50px;
-            height: 50px;
-            display: flex;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin: 10px auto;
-        }
         .lake-content[typography="classic"] {
             line-height: 1.74;
             letter-spacing: 0.008em;
@@ -235,6 +196,11 @@
         .lake-content .ne-link .ne-text {
             font-size: 16px;
             color: #096DD9 !important;
+        }
+        .ne-image {
+            max-width: 90%;
+            padding-right: 20px;
+            padding-left: 20px;
         }
         strong {
             font-size: 14px;
@@ -438,21 +404,35 @@
     </style>
 </head>
 <body>
-<div class="side">
-    <img style="text-align: center;" src="https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg" class="round_icon">
-    <button class="side-button" onclick="window.location.href='/'">首页</button>
-    <button class="side-button" onclick="window.location.href='/DocList/{{ .detail.Data.Book.Slug }}'">知识库</button>
-</div>
-<div style="width: 60%;margin-left: auto;margin-right: auto;">
-    <div>
-        <h1>{{ .detail.Data.Title }}</h1>
-        <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
-    </div>
-    {{ .doc }}
-    <hr>
-    <div id="vssue"></div>
-    <div id="footer">
-        {{template "footer.html"}}
+<!--<div class="side">-->
+<!--    <img style="text-align: center;" src="https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg" class="round_icon">-->
+<!--    <button class="side-button" onclick="window.location.href='/'">首页</button>-->
+<!--    <button class="side-button" onclick="window.location.href='/DocList/{{ .detail.Data.Book.Slug }}'">知识库</button>-->
+<!--</div>-->
+<div id="box">
+    <div id="cmdBoxCenter">
+        <div class="cmdCenter">
+            <!-- 三个按钮 -->
+            <div class="click">
+                <div class="red"></div>
+                <div class="yellow"></div>
+                <div class="green"></div>
+            </div>
+            <div class="title">
+                <span>{{ .detail.Data.Title }}</span>
+            </div>
+            <div class="cmdText">
+                <h1>{{ .detail.Data.Title }}</h1>
+                <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
+                <div class="cmdText">
+                    <div style="padding-right: 20px;padding-top: 10px">
+                        {{ .doc }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="vssue"></div>
     </div>
 </div>
 <script>
