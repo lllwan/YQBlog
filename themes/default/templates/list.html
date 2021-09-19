@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .name }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
+<i class="bi bi-text-indent-left js-sidebar--open" style="font-size: 30px;margin-left: 20px;margin-top: 20px;color: #abb2bf"></i>
+<aside class="js-sidebar">
+    <div class="js-sidebar--container">
+        <div class="meBox">
+            <div class="headPhoto" style="--background: url({{ .blog.Avatar }})" onclick="window.open('/')"></div>
+            <!-- 介绍 -->
+            <div class="meBox-title">
+                <p>{{ .blog.Title }}</p>
+                <div class="fg"></div>
+            </div>
+            <div class="meBox-text">
+                <p>大道至简, 故不繁</p>
+                <p>知行合一, 故不辍</p>
+                <p>守正出奇, 故不忧</p>
+                <p>道生一，一生二，二生三，三生万物</p>
+                <div class="meBox-Button">
+                    <a href="/" target="_blank"><i class="bi bi-house-door-fill"></i></a>
+                    <a href="https://github.com/lllwan" target="_blank"><i class="bi-github" role="img" aria-label="GitHub"></i></a>
+                </div>
+            </div>
+            <div class="drawer">
+                <p>知识库</p>
+                <ul>
+                    {{range $i, $v := .repos}}
+                    <li><a href="/DocList/{{ $v.Repo }}"><i class="bi bi-journal-bookmark-fill"></i>{{ $v.Name }}</a></li>
+                    {{end}}
+                </ul>
+            </div>
+<!--            <div class="drawer">-->
+<!--                <p>友情链接</p>-->
+<!--                <ul>-->
+<!--                    {{range $i, $v := .blog.Link}}-->
+<!--                    <li><a href="{{ $v.Link }}" target="_blank"><i class="bi bi-link"></i> {{ $v.Name }}</a></li>-->
+<!--                    {{end}}-->
+<!--                </ul>-->
+<!--            </div>-->
+        </div>
+    </div>
+    <div class="js-sidebar--background"></div>
+</aside>
 <div id="box">
     <div id="cmdBoxCenter">
         <!-- 第一个终端 -->
@@ -39,5 +80,9 @@
         </div>
     </div>
 </div>
+<script src="../static/js/sidebar.js"></script>
+<script type="text/javascript">
+    var sidebarjs = new SidebarJS();
+</script>
 </body>
 </html>

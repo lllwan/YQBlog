@@ -52,6 +52,7 @@ func (y Config) DocList(g *gin.Context) {
 	for _, v := range y.YuQue.Repos {
 		if v.Repo == repo {
 			g.HTML(200, "list.html", gin.H{
+				"repos": y.YuQue.Repos,
 				"docs": detail,
 				"repo": repo,
 				"name": v.Name,
@@ -77,6 +78,8 @@ func (y Config) Doc(g *gin.Context) {
 		return
 	}
 	g.HTML(200, "doc.html", gin.H{
+		"repos": y.YuQue.Repos,
+		"blog": y.Blog,
 		"doc":    template.HTML(html),
 		"detail": detail,
 		"index":  g.Request.Host,

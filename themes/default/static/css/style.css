@@ -32,7 +32,6 @@ body {
 
 .meBox:hover {
     width: 21rem;
-    height: 26rem;
     margin: 95px 0 0 9.5%;
 }
 
@@ -47,13 +46,6 @@ body {
     left: 50%;
     margin-left: -4rem;
     transition: all 0.3s;
-}
-
-.meBox:hover .headPhoto {
-    width: 9rem;
-    height: 9rem;
-    margin: -0.5rem 0 0 -4.5rem;
-    transform: rotate(360deg);
 }
 
 .headPhoto:hover {
@@ -88,10 +80,6 @@ body {
     transition: all 0.3s;
 }
 
-.meBox:hover .meBox-title p {
-    font-size: 1.3rem;
-}
-
 .meBox-title .fg {
     width: 80%;
     height: 2px;
@@ -114,10 +102,6 @@ body {
 
 .meBox-text p {
     margin-top: 5px;
-}
-
-.meBox:hover .meBox-text {
-    font-size: 1.05rem;
 }
 
 @keyframes meBox-text {
@@ -153,11 +137,6 @@ body {
 }
 .meBox-Button a:hover {
     font-size: 1.8rem;
-}
-
-.meBox:hover .meBox-Button a {
-    width: 50px;
-    margin-top: 10px;
 }
 
 #cmdBox {
@@ -371,12 +350,6 @@ body {
         margin-left: 3%;
     }
 
-    .meBox:hover {
-        width: 21rem;
-        height: 26rem;
-        margin: 95px 0 0 2.5%;
-    }
-
     #cmdBox {
         margin-right: 3%;
     }
@@ -385,12 +358,6 @@ body {
 {
     .meBox {
         margin-left: 3%;
-    }
-
-    .meBox:hover {
-        width: 21rem;
-        height: 26rem;
-        margin: 95px 0 0 2.5%;
     }
 
     #cmdBox {
@@ -407,12 +374,6 @@ body {
     .meBox {
         float: none;
         margin: 100px auto 100px;
-    }
-
-    .meBox:hover {
-        width: 21rem;
-        height: 26rem;
-        margin: 95px auto 95px;
     }
 
     #cmdBox {
@@ -436,34 +397,8 @@ body {
         width: 300px;
     }
 
-    .meBox:hover {
-        width: 300px;
-        height: 25rem;
-        margin: 100px auto 100px;
-    }
-
     .meBox-Button a:hover {
         color: rgb(0, 132, 255);
-    }
-
-    .meBox:hover .meBox-Button a {
-        width: 150px;
-        margin-top: 0;
-    }
-
-    .meBox:hover .meBox-title p {
-        font-size: 1.2rem;
-    }
-
-    .meBox:hover .headPhoto {
-        width: 8rem;
-        height: 8rem;
-        margin: -0.5rem 0 0 -4rem;
-        transform: rotate(360deg);
-    }
-
-    .meBox:hover .meBox-text {
-        font-size: 1rem;
     }
 
     .meBox-Button a {
@@ -536,4 +471,138 @@ body {
 }
 h3 {
     font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+a {
+    color:inherit;
+    text-decoration:none
+}
+.js-sidebar, .js-sidebar--background {
+    top:0;
+    left:0;
+    width:100%;
+    height:100%
+}
+.js-sidebar--background {
+    -moz-transition:all .3s ease;
+    -o-transition:all .3s ease;
+    -webkit-transition:all .3s ease;
+    transition:all .3s ease
+}
+.js-sidebar--open {
+    height:44px;
+    width: 50px;
+    display:-webkit-flex;
+    -webkit-align-items:center;
+    -webkit-justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center
+}
+.js-sidebar {
+    position:fixed;
+    z-index:9999;
+    -moz-transform:translate(-100%, 0);
+    -ms-transform:translate(-100%, 0);
+    -webkit-transform:translate(-100%, 0);
+    transform:translate(-100%, 0);
+    -moz-transition:-moz-transform 0s ease .3s;
+    -o-transition:-o-transform 0s ease .3s;
+    -webkit-transition:-webkit-transform 0s ease;
+    -webkit-transition-delay:.3s;
+    transition:transform 0s ease .3s
+}
+.js-sidebar--background {
+    position:absolute;
+    background:transparent
+}
+.js-sidebar--container {
+    position:relative;
+    z-index:1;
+    width:90%;
+    max-width:390px;
+    height:100%;
+    background:#FFF;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    display:flex;
+    flex-direction:column;
+    -moz-box-shadow:2px 0 20px rgba(0, 0, 0, 0.2), 1px 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow:2px 0 20px rgba(0, 0, 0, 0.2), 1px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow:2px 0 20px rgba(0, 0, 0, 0.2), 1px 0 10px rgba(0, 0, 0, 0.1);
+    -moz-transform:translate(-100%, 0);
+    -ms-transform:translate(-100%, 0);
+    -webkit-transform:translate(-100%, 0);
+    transform:translate(-100%, 0)
+}
+.js-sidebar--container .sidebar--title {
+    height:150px;
+    min-height:150px;
+    padding:16px;
+    background:#2196F3;
+    color:white;
+    font-size:32px;
+    line-height:100%;
+    display:-webkit-flex;
+    -webkit-align-items:flex-end;
+    display:flex;
+    align-items:flex-end
+}
+.js-sidebar--container .sidebar--menu {
+    overflow:auto
+}
+.js-sidebar--container .sidebar--menu-link--group {
+    border-top:1px solid rgba(0, 0, 0, 0.1);
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    display:flex;
+    flex-direction:column
+}
+.js-sidebar--container .sidebar--menu-link {
+    padding:16px
+}
+.js-sidebar.is-visible {
+    -moz-transform:translate(0, 0);
+    -ms-transform:translate(0, 0);
+    -webkit-transform:translate(0, 0);
+    transform:translate(0, 0);
+    -moz-transition:-moz-transform 0s ease 0s;
+    -o-transition:-o-transform 0s ease 0s;
+    -webkit-transition:-webkit-transform 0s ease;
+    -webkit-transition-delay:0s;
+    transition:transform 0s ease 0s
+}
+.js-sidebar.is-visible .js-sidebar--background {
+    background:rgba(0, 0, 0, 0.2)
+}
+.drawer {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.drawer ul {
+    margin-left: 5px;
+}
+.drawer li {
+    list-style: none;
+    margin-top: 10px;
+    margin-right: 20px;
+    float: left;
+    white-space: nowrap;
+}
+.drawer i {
+    margin-right: 5px;
+}
+
+#hr-text {
+    text-align: center;
+}
+.middle-line {
+    width: 0;
+    height: 100px;
+    z-index: -1;
+}
+
+.drawer p {
+    /*font-weight: bold;*/
+    /*word-break: break-all;*/
 }
