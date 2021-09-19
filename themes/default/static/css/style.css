@@ -533,10 +533,6 @@ body {
 .cover {
     width: 200px;
     height: 200px;
-    position: relative;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%)
 }
 h3 {
     font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
