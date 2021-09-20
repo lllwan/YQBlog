@@ -37,3 +37,26 @@
 + github pages
   + 慢
   + 需要hexo等静态博客方案，所以具有其所有缺点。
+  
+### 开始使用
++ clone 代码
+```bigquery
+git pull https://github.com/lllwan/YQBlog.git
+```
++ 使用docker-compose
+
+  1. 准备配置文件，参照：config.yaml.example
+     ```bigquery
+     cp config.yaml.example config.yaml
+     vim config.yaml```
+    
+  2. 编辑docker-compose.yml
+  3. 运行
+    ```bigquery
+    docker-compose up -d --build
+    ```
+  
++ 手动编译
+  ```bigquery
+  go build *.go -o YQBlog
+  ```
