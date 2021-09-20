@@ -39,6 +39,7 @@
   + 需要hexo等静态博客方案，所以具有其所有缺点。
   
 ### 开始使用
+
 + clone 代码
 ```bigquery
 git pull https://github.com/lllwan/YQBlog.git
@@ -61,3 +62,52 @@ git pull https://github.com/lllwan/YQBlog.git
   go build *.go -o YQBlog
   ./YQBlog
   ```
+  
+### 配置文件
++ token可以在语雀--> 账户设置--> Token中创建， 链接：https://www.yuque.com/settings/tokens
++ token需要读取知识库和文档的权限
+
+```bigquery
+---
+yuque:
+  api: "https://www.yuque.com/api/v2"
+  token: "you yuque token"
+  user: "yuque id"
+  # 语雀仓库ID， 参阅：https://www.yuque.com/yuque/developer/repo
+  repos:
+    - name: "运维笔记"
+      repo: "kkgfxm"   # 语雀仓库Id
+    - name: "云原生"
+      repo: "ooa19f"
+    - name: "DIY搞事情"
+      repo: "bua6cb"
+    - name: "开开脑洞"
+      repo: "ussmi8"
+blog:
+  title: "WangXun`s Blog"
+  subtitle: "大道至简"
+  keywords: "页面keywords"
+  avatar: "https://blog-download-1251192068.cos.ap-shanghai.myqcloud.com/background.jpg"
+  description: "页面description"
+  author: "WangXun"
+  # 友情链接
+  link:
+      - name: "google"
+      - link: "https://www.google.com"
+  # 留言板插件vssue的配置， 获取步骤参考：https://vssue.js.org/zh/guide/github.html#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84-oauth-app
+  vssue:
+    owner: "lllwan"
+    repo: "blog"
+    clientId: "xxxxx"
+    clientSecret: "xxxxx"
+
+manage:
+  # 是否开启自动https证书维护， 此功能需要博客可以直接被外网访问。
+  autoSSL: false
+  # http端口
+  httpPort: 80
+  # https监听端口
+  httpsPort: 443
+  # 博客主题，目前只有默认主题，无需修改。
+  theme: default
+```
