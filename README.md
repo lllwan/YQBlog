@@ -59,4 +59,5 @@ git pull https://github.com/lllwan/YQBlog.git
 + 手动编译
   ```bigquery
   go build *.go -o YQBlog
+  ./YQBlog
   ```
