@@ -30,10 +30,10 @@ body {
     text-align: center;
 }
 
-.meBox:hover {
-    width: 21rem;
-    margin: 95px 0 0 9.5%;
-}
+/*.meBox:hover {*/
+/*    width: 21rem;*/
+/*    margin: 95px 0 0 9.5%;*/
+/*}*/
 
 .headPhoto {
     width: 8rem;
@@ -374,6 +374,7 @@ body {
     .meBox {
         float: none;
         margin: 100px auto 100px;
+        max-width: 100%;
     }
 
     #cmdBox {
@@ -390,11 +391,11 @@ body {
     }
     .cmdCenter {
         margin: auto auto;
-        width: 500px;
+        max-width: 100%;
     }
     .meBox {
         margin: 60px auto;
-        width: 300px;
+        max-width: 100%;
     }
 
     .meBox-Button a:hover {
