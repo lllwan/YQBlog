@@ -253,14 +253,6 @@
                     {{end}}
                 </ul>
             </div>
-            <!--            <div class="drawer">-->
-            <!--                <p>友情链接</p>-->
-            <!--                <ul>-->
-            <!--                    {{range $i, $v := .blog.Link}}-->
-            <!--                    <li><a href="{{ $v.Link }}" target="_blank"><i class="bi bi-link"></i> {{ $v.Name }}</a></li>-->
-            <!--                    {{end}}-->
-            <!--                </ul>-->
-            <!--            </div>-->
         </div>
     </div>
     <div class="js-sidebar--background"></div>
@@ -278,12 +270,9 @@
                 <span>{{ .detail.Data.Title }}</span>
             </div>
             <div class="cmdText">
-                <h1>{{ .detail.Data.Title }}</h1>
-                <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
-                <div class="cmdText">
-                    <div style="padding-right: 20px;padding-top: 10px" id="write">
-                        {{ .doc }}
-                    </div>
+                <div style="padding-right: 20px;" id="write">
+                    {{ .doc }}
+                    <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
                 </div>
             </div>
         </div>
