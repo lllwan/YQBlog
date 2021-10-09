@@ -1,5 +1,5 @@
 * {
-    font-family: FiraCode;
+    font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
     margin: 0;
     padding: 0;
 }
@@ -470,10 +470,10 @@ body {
     width: 200px;
     height: 200px;
 }
-h3 {
+
+h1 {
     font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
 }
-
 a {
     color:inherit;
     text-decoration:none

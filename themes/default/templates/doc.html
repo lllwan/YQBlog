@@ -13,394 +13,214 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
     <style>
-        .lake-content[typography="classic"] {
-            line-height: 1.74;
-            letter-spacing: 0.008em;
-            color: #404040;
-            font-size: 15px;
+        /* 全局属性 */
+        #write {
+            max-width: 860px;
+            font-size: 16px;
+            color: black;
+            padding: 0 10px;
+            line-height: 1.6;
+            word-spacing: 0px;
+            letter-spacing: 0px;
+            word-break: break-word;
+            word-wrap: break-word;
+            text-align: left;
+            font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light,
+            'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
-        .lake-content[typography="classic"] .ne-table {
-            line-height: 1.74;
-        }
-        .lake-content[typography="traditional"] {
-            line-height: 1.74;
-            letter-spacing: 0.05em;
-            color: #262626;
-            font-size: 14px;
-        }
-        .lake-content[typography="traditional"] .ne-table {
-            line-height: 1.74;
-        }
-        .lake-content .ne-code {
-            font-family: monospace;
-            font-size: inherit;
-            background-color: rgba(0, 0, 0, 0.06);
-            padding: 0 2px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 2px 2px;
-            line-height: inherit;
-            overflow-wrap: break-word;
-            text-indent: 0;
-            color: rgb(71, 193, 168);
 
-        }
-        .lake-content[typography="classic"] h1 {
-            font-size: 2em;
-            margin: 26px 0 10px 0;
-        }
-        .lake-content[typography="classic"] h1:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="classic"] h2 {
-            font-size: 24px;
-            margin: 21px 0 5px 0;
-        }
-        .lake-content[typography="classic"] h2:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="classic"] h3 {
-            font-size: 20px;
-            margin: 16px 0 5px 0;
-        }
-        .lake-content[typography="classic"] h3:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="classic"] h4 {
+        /* 段落 */
+        #write p {
             font-size: 16px;
-            margin: 10px 0 5px 0;
-        }
-        .lake-content[typography="classic"] h4:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="classic"] h5 {
-            font-size: 15px;
-            margin: 8px 0 5px 0;
-        }
-        .lake-content[typography="classic"] h5:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="classic"] h6 {
-            font-size: 15px;
-            margin: 8px 0 5px 0;
-        }
-        .lake-content[typography="classic"] h6:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="traditional"] h1 {
-            font-size: 28px;
-            margin: 7px 0;
-        }
-        .lake-content[typography="traditional"] h1:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="traditional"] h2 {
-            font-size: 24px;
-            margin: 7px 0;
-        }
-        .lake-content[typography="traditional"] h2:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="traditional"] h3 {
-            font-size: 20px;
-            margin: 7px 0;
-        }
-        .lake-content[typography="traditional"] h3:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="traditional"] h4 {
-            font-size: 16px;
-            margin: 7px 0;
-        }
-        .lake-content[typography="traditional"] h4:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="traditional"] h5 {
-            font-size: 14px;
-            margin: 7px 0;
-        }
-        .lake-content[typography="traditional"] h5:first-child {
-            margin-top: 0;
-        }
-        .lake-content[typography="traditional"] h6 {
-            font-size: 14px;
-            margin: 7px 0;
-        }
-        .lake-content[typography="traditional"] h6:first-child {
-            margin-top: 0;
-        }
-        .lake-content .ne-quote p {
-            margin: 5px 0;
-            padding-left: 1em;
-            margin-left: 0;
-            border-left: 3px solid #eeeeee;
-            opacity: 0.7;
-        }
-        .lake-content .ne-table {
-            table-layout: fixed;
-            border-collapse: collapse;
-            border: 1px solid #d9d9d9;
-            margin: 18px 0 16px 0;
-        }
-        .lake-content .ne-table tr {
-            border: 1px solid #d9d9d9;
-            height: 33px;
-        }
-        .lake-content .ne-table td {
-            border: 1px solid #d9d9d9;
-            vertical-align: top;
-            padding: 4px 8px;
-        }
-        .lake-content .ne-table.no-border {
-            border: none;
-        }
-        .lake-content .ne-table.no-border tr,
-        .lake-content .ne-table.no-border td {
-            border: none;
-        }
-        .lake-content .ne-p {
+            padding-top: 8px;
+            padding-bottom: 8px;
             margin: 0;
-            padding: 0;
-            min-height: 24px;
+            line-height: 26px;
+            color: black;
         }
-        .lake-content .ne-alert {
+
+        /* 标题 */
+        #write h1,
+        #write h2,
+        #write h3,
+        #write h4,
+        #write h5,
+        #write h6 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding: 0px;
+            font-weight: bold;
+            color: black;
+        }
+        #write h1 {
+            font-size: 1.5rem;
+        }
+        #write h2 {
+            font-size: 1.3rem;
+            border-bottom: 2px solid rgb(239, 112, 96);
+        }
+        #write h2 span {
+            display: inline-block;
+            font-weight: bold;
+            background: rgb(239, 112, 96);
+            color: #ffffff;
+            padding: 3px 10px 1px;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            margin-right: 3px;
+        }
+        #write h2:after {
+            display: inline-block;
+            content: '';
+            vertical-align: bottom;
+            border-bottom: 36px solid #efebe9;
+            border-right: 20px solid transparent;
+        }
+        #write h3 {
+            font-size: 1.2rem;
+        }
+        #write h4 {
+            font-size: 1.1rem;
+        }
+        #write h5 {
+            font-size: 1rem;
+        }
+        #write h6 {
+            font-size: 1rem;
+        }
+
+        /* 列表 */
+        #write ul,
+        #write ol {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            padding-left: 25px;
+            color: black;
+        }
+        #write ul {
+            list-style-type: disc;
+        }
+        #write ul ul {
+            list-style-type: square;
+        }
+        #write ol {
+            list-style-type: decimal;
+        }
+        #write li section {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            line-height: 26px;
+            text-align: left;
+            color: rgb(1, 1, 1); /* 只要是纯黑色微信编辑器就会把color这个属性吞掉。。。*/
+            font-weight: 500;
+        }
+
+        /* 引用 */
+        #write .ne-quote {
             display: block;
-            margin: 4px 0;
-            padding: 10px;
-            border-radius: 4px;
-            color: #262626;
-            border: 1px solid #abd2da;
-            background-color: #e8f7ff;
+            font-size: 0.9em;
+            overflow: auto;
+            overflow-scrolling: touch;
+            border-left: 3px solid rgb(239, 112, 96);
+            color: #6a737d;
+            padding: 10px 10px 10px 20px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            background: #fff9f9;
         }
-        .lake-content .ne-alert[data-type="info"] {
-            border: 1px solid #abd2da;
-            background-color: #e8f7ff;
+        #write .ne-quote p {
+            margin: 0px;
+            color: black;
+            line-height: 26px;
         }
-        .lake-content .ne-alert[data-type="warning"] {
-            border: 1px solid #e0d1b1;
-            background-color: #fffbe6;
+
+        /* 链接 */
+        #write a {
+            text-decoration: none;
+            word-wrap: break-word;
+            font-weight: bold;
+            border-bottom: 1px solid #1e6bb8;
+            color: rgb(239, 112, 96);
+            border-bottom: 1px solid rgb(239, 112, 96);
         }
-        .lake-content .ne-alert[data-type="success"] {
-            border: 1px solid #c2d2b5;
-            background-color: #edf9e8;
-        }
-        .lake-content .ne-alert[data-type="danger"] {
-            border: 1px solid #deb8be;
-            background-color: #fff3f3;
-        }
-        .lake-content .ne-alert[data-type="tips"] {
-            border: 1px solid #c3c3c3;
-            background-color: #fff6b6;
-        }
-        .lake-content .ne-link {
-            color: #096DD9;
-        }
-        .lake-content .ne-link .ne-text {
-            font-size: 16px;
-            color: #096DD9 !important;
-        }
-        .ne-image {
-            max-width: 90%;
-            padding-right: 20px;
-            padding-left: 20px;
-        }
-        strong {
+
+        /* 行内代码 */
+        #write p code,
+        #write li code {
             font-size: 14px;
-            overflow-wrap: break-word;
+            word-wrap: break-word;
             padding: 2px 4px;
             border-radius: 4px;
+            margin: 0 2px;
+            color: rgb(239, 112, 96);
             background-color: rgba(27, 31, 35, 0.05);
-            font-family: "Operator Mono", Consolas, Monaco, Menlo, monospace;
+            font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
             word-break: break-all;
-            color: rgb(71, 193, 168);
         }
-        .lake-content .ne-card-file {
-            word-wrap: break-word;
-            color: #096DD9;
-            touch-action: manipulation;
-            text-decoration: none;
-            outline: none;
-            cursor: pointer;
+
+        /* 图片 */
+        #write img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
         }
-        .lake-content .ne-card-file[data-type="info"] {
-            border: 1px solid #abd2da;
-            background-color: #e8f7ff;
+
+        /* 表格 */
+        #write table {
+            display: table;
+            text-align: left;
         }
-        .lake-content .ne-card-file[data-type="warning"] {
-            border: 1px solid #e0d1b1;
-            background-color: #fffbe6;
+        #write tbody {
+            border: 0;
         }
-        .lake-content .ne-card-file[data-type="success"] {
-            border: 1px solid #c2d2b5;
-            background-color: #edf9e8;
+        #write table tr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            background-color: white;
         }
-        .lake-content .ne-card-file[data-type="danger"] {
-            border: 1px solid #deb8be;
-            background-color: #fff3f3;
+        #write table tr:nth-child(2n) {
+            background-color: #f8f8f8;
         }
-        .lake-content .ne-card-file[data-type="tips"] {
-            border: 1px solid #c3c3c3;
-            background-color: #fff6b6;
+        #write table tr th,
+        #write table tr td {
+            font-size: 16px;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            text-align: left;
         }
-        .lake-content .ne-ul,
-        .lake-content .ne-ol,
-        .lake-content .ne-tl {
-            margin: 0;
-            padding-left: 23px;
+        #write table tr th {
+            font-weight: bold;
+            background-color: #f0f0f0;
         }
-        .lake-content .ne-ul[ne-level="1"],
-        .lake-content .ne-ol[ne-level="1"],
-        .lake-content .ne-tl[ne-level="1"] {
-            margin-left: 2em;
+
+        /* 行内代码 */
+        #write span code,
+        #write li code {
+            color: rgb(239, 112, 96);
         }
-        .lake-content .ne-ul[ne-level="2"],
-        .lake-content .ne-ol[ne-level="2"],
-        .lake-content .ne-tl[ne-level="2"] {
-            margin-left: 4em;
+
+        /* 脚注上标 */
+        #write .md-footnote {
+            font-weight: bold;
+            color: rgb(239, 112, 96);
         }
-        .lake-content .ne-ul[ne-level="3"],
-        .lake-content .ne-ol[ne-level="3"],
-        .lake-content .ne-tl[ne-level="3"] {
-            margin-left: 6em;
+        #write .md-footnote > .md-text:before {
+            content: '[';
         }
-        .lake-content .ne-ul[ne-level="4"],
-        .lake-content .ne-ol[ne-level="4"],
-        .lake-content .ne-tl[ne-level="4"] {
-            margin-left: 8em;
+        #write .md-footnote > .md-text:after {
+            content: ']';
         }
-        .lake-content .ne-ul[ne-level="5"],
-        .lake-content .ne-ol[ne-level="5"],
-        .lake-content .ne-tl[ne-level="5"] {
-            margin-left: 10em;
+
+        /* 脚注 */
+        #write .md-def-name {
+            padding-right: 1.8ch;
         }
-        .lake-content .ne-ul[ne-level="6"],
-        .lake-content .ne-ol[ne-level="6"],
-        .lake-content .ne-tl[ne-level="6"] {
-            margin-left: 12em;
+        #write .md-def-name:before {
+            content: '[';
+            color: #000;
         }
-        .lake-content .ne-ul[ne-level="7"],
-        .lake-content .ne-ol[ne-level="7"],
-        .lake-content .ne-tl[ne-level="7"] {
-            margin-left: 14em;
-        }
-        .lake-content .ne-ul[ne-level="8"],
-        .lake-content .ne-ol[ne-level="8"],
-        .lake-content .ne-tl[ne-level="8"] {
-            margin-left: 16em;
-        }
-        .lake-content .ne-list-wrap {
-            margin: 0;
-            padding-left: 23px;
-        }
-        .lake-content .ne-list-wrap [ne-level="1"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-list-wrap [ne-level="2"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-list-wrap [ne-level="3"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-list-wrap [ne-level="4"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-list-wrap [ne-level="5"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-list-wrap [ne-level="6"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-list-wrap [ne-level="7"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-list-wrap [ne-level="8"] {
-            margin-left: 0;
-        }
-        .lake-content .ne-ol[ne-level="1"],
-        .lake-content .ne-ol[ne-level="4"],
-        .lake-content .ne-ol[ne-level="7"] {
-            list-style: lower-alpha;
-        }
-        .lake-content .ne-ol[ne-level="2"],
-        .lake-content .ne-ol[ne-level="5"],
-        .lake-content .ne-ol[ne-level="8"] {
-            list-style: lower-roman;
-        }
-        .lake-content .ne-ul[ne-level="1"],
-        .lake-content .ne-ul[ne-level="4"],
-        .lake-content .ne-ul[ne-level="7"] {
-            list-style: circle;
-        }
-        .lake-content .ne-ul[ne-level="2"],
-        .lake-content .ne-ul[ne-level="5"],
-        .lake-content .ne-ul[ne-level="8"] {
-            list-style: square;
-        }
-        .lake-content .ne-tl {
-            list-style: none;
-            padding-left: 0;
-        }
-        .lake-content .ne-label {
-            margin: 0 1px;
-            border-radius: 4px;
-            padding: 0 3px;
-            border: 2px solid #fff;
-        }
-        .lake-content .ne-label[data-color="0"] {
-            color: #820014;
-            background: #ffe8e6;
-        }
-        .lake-content .ne-label[data-color="1"] {
-            color: #614700;
-            background: #fff8bd;
-        }
-        .lake-content .ne-label[data-color="2"] {
-            color: #135200;
-            background: #e4f7d2;
-        }
-        .lake-content .ne-label[data-color="3"] {
-            color: #595959;
-            background: #e9e9e9;
-        }
-        .lake-content .ne-label[data-color="4"] {
-            color: #003a8c;
-            background: #d4eefc;
-        }
-        .lake-content .ne-label[data-color="5"] {
-            color: #061178;
-            background: #dee8fc;
-        }
-        .lake-content .ne-codeblock {
-            overflow-x:auto;
-            padding: 16px;
-            color:#abb2bf;
-            font-family:Operator Mono,Consolas,Monaco,Menlo,monospace;
-            font-size:12px;
-            -webkit-overflow-scrolling:touch;
-            padding-top:15px;
-            background:#282c34;
-            border-radius:5px;
-        }
-        .lake-content .ne-hr {
-            margin: 18px 0;
-            background-color: #e8e8e8;
-            border: 1px solid transparent;
-        }
-        .lake-content .ne-text-diagram pre {
-            border: 1px solid #e8e8e8;
-            border-radius: 2px;
-            background: #f9f9f9;
-            padding: 16px;
-            font-size: 13px;
-            color: #595959;
-        }
-        .lake-content .ne-mark {
-            background-color: #ff0 !important;
-            padding: 0;
-            margin: 0 1px;
-        }
-        .lake-content .ne-mark .ne-text {
-            color: inherit !important;
-            background: none!important;
+        #write .md-def-name:after {
+            color: #000;
         }
     </style>
 </head>
@@ -461,7 +281,7 @@
                 <h1>{{ .detail.Data.Title }}</h1>
                 <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
                 <div class="cmdText">
-                    <div style="padding-right: 20px;padding-top: 10px">
+                    <div style="padding-right: 20px;padding-top: 10px" id="write">
                         {{ .doc }}
                     </div>
                 </div>
