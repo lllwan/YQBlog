@@ -33,7 +33,23 @@ func (y Config) ListRepoDoc(namespace string) (yuqueg.BookDetail, error) {
 }
 
 func (y Config) GetDoc(namespace, slug string) (yuqueg.DocDetail, error) {
-	return y.Client().Doc.Get(namespace, slug, &yuqueg.DocGet{Raw: 1})
+	var doc yuqueg.DocDetail
+	docs, err := y.ListRepoDoc(namespace)
+	if err != nil {
+		return yuqueg.DocDetail{}, err
+	}
+	for _, v := range docs.Data {
+		data, ok := Cache[slug]
+		if ok && v.Slug == slug && v.UpdatedAt == data.Data.UpdatedAt {
+			return data, nil
+		}
+	}
+	doc, err = y.Client().Doc.Get(namespace, slug, &yuqueg.DocGet{Raw: 1})
+	if err != nil {
+		return yuqueg.DocDetail{}, err
+	}
+	Cache[slug] = doc
+	return doc, nil
 }
 
 func (y Config) GetDocHTML(detail yuqueg.DocDetail) (string, error) {

@@ -4,12 +4,15 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/wujiyu115/yuqueg"
 	"golang.org/x/crypto/acme/autocert"
 	"golang.org/x/net/http2"
 	"log"
 	"net/http"
 	"os"
 )
+
+var Cache = make(map[string]yuqueg.DocDetail)
 
 func verify(c *Config) {
 	if len(c.YuQue.Repos) == 0 {
