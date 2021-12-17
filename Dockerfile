@@ -17,7 +17,6 @@ RUN apk add --no-cache tzdata
 RUN mkdir -p /app/themes
 WORKDIR /app/
 COPY --from=0 /app/YQBlog /app/YQBlog
-COPY --from=0 /app/config.yaml /app/config.yaml
 COPY --from=0 /app/themes /app/themes/
 RUN chmod +x YQBlog
 CMD /app/YQBlog
