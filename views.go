@@ -108,7 +108,7 @@ func (y Config) SearchDoc(g *gin.Context) {
 			Name:        Cache[v].Name,
 			UpdatedAt:   Cache[v].UpdatedAt,
 			CreatedAt:   Cache[v].CreatedAt,
-			Url:         fmt.Sprintf("/%s/%s", strings.Split(Cache[v].Namespace, "/")[1], Cache[v].Slug),
+			Url:         fmt.Sprintf("//%s/%s/%s", g.Request.Host, strings.Split(Cache[v].Namespace, "/")[1], Cache[v].Slug),
 		}
 		result = append(result, item)
 	}

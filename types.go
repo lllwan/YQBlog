@@ -61,3 +61,8 @@ type DocDesc struct {
 	CreatedAt   time.Time `json:"createdAt,omitempty"`
 	UpdatedAt   time.Time `json:"updatedAt,omitempty"`
 }
+
+type Persistence struct {
+	Cache      map[string]*DocDesc
+	IndexStore map[string]*Set
+}

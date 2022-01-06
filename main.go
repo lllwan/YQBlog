@@ -2,7 +2,9 @@ package main
 
 import (
 	"crypto/tls"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -23,6 +25,37 @@ var (
 	cli   *Config
 )
 
+func SetDocIndex(detail yuqueg.DocDetail, namespace string) *DocDesc {
+	Cache[detail.Data.Slug] = cli.GenerateCache(detail, namespace)
+	seg := Seg.Cut(TrimHtml(detail.Data.BodyHTML), true)
+	for _, v := range seg {
+		if utf8.RuneCountInString(v) < 2 || regexp.MustCompile(`^\s|。|，|;|；|,|-|、|:|：|\.|\?|？|\(|\)|《|》|"|'$`).MatchString(v) {
+			continue
+		}
+		word := ToLower(v)
+		_, exist := Store[word]
+		if exist {
+			Store[word].Set(detail.Data.Slug)
+		} else {
+			set := NewSet()
+			set.Set(detail.Data.Slug)
+			Store[word] = set
+		}
+	}
+	if err := PersistenceCache(); err != nil {
+		log.Println("缓存持久化失败:", err.Error())
+	}
+	return Cache[detail.Data.Slug]
+}
+
+func PersistenceCache() error {
+	b, _ := json.Marshal(&Persistence{
+		Cache:      Cache,
+		IndexStore: Store,
+	})
+	return ioutil.WriteFile("data.cache", b, 0777)
+}
+
 func createIndex(repo string) error {
 	namespace := fmt.Sprintf("%s/%s", cli.YuQue.User, repo)
 	docs, _ := cli.ListRepoDoc(namespace)
@@ -31,35 +64,37 @@ func createIndex(repo string) error {
 		if err != nil {
 			return err
 		}
-		Cache[doc.Slug] = cli.GenerateCache(detail, namespace)
-		seg := Seg.Cut(TrimHtml(detail.Data.BodyHTML), true)
-		for _, v := range seg {
-			if utf8.RuneCountInString(v) < 2 || regexp.MustCompile(`^\s|。|，|;|；|,|-|、|:|：|\.|\?|？|\(|\)|《|》|"|'$`).MatchString(v) {
-				continue
-			}
-			word := ToLower(v)
-			_, exist := Store[word]
-			if exist {
-				Store[word].Set(doc.Slug)
-			} else {
-				set := NewSet()
-				set.Set(doc.Slug)
-				Store[word] = set
-			}
-		}
+		SetDocIndex(detail, namespace)
 	}
-	return nil
+	return PersistenceCache()
 }
 
 func init() {
 	cli = client()
 	Store = make(map[string]*Set)
 	Seg = gojieba.NewJieba()
-	for _, v := range cli.YuQue.Repos {
-		err := createIndex(v.Repo)
-		if err != nil {
-			log.Println(err)
+	cacheFile := "data.cache"
+	_, err := os.Stat(cacheFile)
+Index:
+	if err != nil {
+		for _, v := range cli.YuQue.Repos {
+			err := createIndex(v.Repo)
+			if err != nil {
+				log.Println(err)
+			}
 		}
+	} else {
+		var p Persistence
+		b, _ := ioutil.ReadFile(cacheFile)
+		err := json.Unmarshal(b, &p)
+		if err != nil {
+			if err := os.Remove(cacheFile); err != nil {
+				log.Fatal("缓存文件：", cacheFile, "已损坏且重置失败:", err.Error())
+			}
+			goto Index
+		}
+		Cache = p.Cache
+		Store = p.IndexStore
 	}
 }
 

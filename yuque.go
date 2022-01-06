@@ -60,8 +60,7 @@ func (y Config) GetDoc(namespace, slug string) (*DocDesc, error) {
 	if err != nil {
 		return nil, err
 	}
-	Cache[slug] = y.GenerateCache(doc, namespace)
-	return Cache[slug], nil
+	return SetDocIndex(doc, namespace), nil
 }
 
 func (y Config) GetDocHTML(detail *DocDesc) (string, error) {
@@ -75,6 +74,6 @@ func (y Config) GetDocHTMLUseProxy(detail *DocDesc, host string) (string, error)
 		return "", err
 	}
 	// 通过替换html中的cdn链接进行反向代理避免跨域问题。
-	result := strings.Replace(html, "https://cdn.nlark.com/", fmt.Sprintf("http://%s/", host), -1)
+	result := strings.Replace(html, "https://cdn.nlark.com/", fmt.Sprintf("//%s/", host), -1)
 	return result, nil
 }
