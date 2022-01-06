@@ -32,32 +32,44 @@ func (y Config) ListRepoDoc(namespace string) (yuqueg.BookDetail, error) {
 	return y.Client().Doc.List(namespace)
 }
 
-func (y Config) GetDoc(namespace, slug string) (yuqueg.DocDetail, error) {
+func (y Config) GenerateCache(doc yuqueg.DocDetail, namespace string) *DocDesc {
+	return &DocDesc{
+		Name:        doc.Data.Title,
+		Description: doc.Data.Description,
+		UpdatedAt:   doc.Data.UpdatedAt,
+		CreatedAt:   doc.Data.CreatedAt,
+		BodyHTML:    doc.Data.BodyHTML,
+		Slug:        doc.Data.Slug,
+		Namespace:   namespace,
+	}
+}
+
+func (y Config) GetDoc(namespace, slug string) (*DocDesc, error) {
 	var doc yuqueg.DocDetail
 	docs, err := y.ListRepoDoc(namespace)
 	if err != nil {
-		return yuqueg.DocDetail{}, err
+		return nil, err
 	}
 	for _, v := range docs.Data {
 		data, ok := Cache[slug]
-		if ok && v.Slug == slug && v.UpdatedAt == data.Data.UpdatedAt {
+		if ok && v.Slug == slug && v.UpdatedAt == data.UpdatedAt {
 			return data, nil
 		}
 	}
 	doc, err = y.Client().Doc.Get(namespace, slug, &yuqueg.DocGet{Raw: 1})
 	if err != nil {
-		return yuqueg.DocDetail{}, err
+		return nil, err
 	}
-	Cache[slug] = doc
-	return doc, nil
+	Cache[slug] = y.GenerateCache(doc, namespace)
+	return Cache[slug], nil
 }
 
-func (y Config) GetDocHTML(detail yuqueg.DocDetail) (string, error) {
-	html := strings.Replace(detail.Data.BodyHTML, "<!doctype html>", "", -1)
+func (y Config) GetDocHTML(detail *DocDesc) (string, error) {
+	html := strings.Replace(detail.BodyHTML, "<!doctype html>", "", -1)
 	return html, nil
 }
 
-func (y Config) GetDocHTMLUseProxy(detail yuqueg.DocDetail, host string) (string, error) {
+func (y Config) GetDocHTMLUseProxy(detail *DocDesc, host string) (string, error) {
 	html, err := y.GetDocHTML(detail)
 	if err != nil {
 		return "", err

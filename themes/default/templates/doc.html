@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ .detail.Data.Title }}</title>
-    <meta name="description" content="{{ $.detail.Data.Description }}">
+    <title>{{ .detail.Name }}</title>
+    <meta name="description" content="{{ $.detail.Description }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../static/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/vssue/dist/vssue.min.css">
@@ -267,12 +267,12 @@
                 <div class="green"></div>
             </div>
             <div class="title">
-                <span>{{ .detail.Data.Title }}</span>
+                <span>{{ .detail.Name }}</span>
             </div>
             <div class="cmdText">
                 <div style="padding-right: 20px;" id="write">
                     {{ .doc }}
-                    <p style="color: darkgray;font-size: small">创建于：{{ .detail.Data.CreatedAt }}</p>
+                    <p style="color: darkgray;font-size: small">创建于：{{ .detail.CreatedAt }}</p>
                 </div>
             </div>
         </div>
@@ -297,7 +297,7 @@
         render: h => h('Vssue', {
             props: {
                 // 在这里设置当前页面对应的 Issue 标题
-                title: '{{ .detail.Data.Slug }}',
+                title: '{{ .detail.Slug }}',
 
                 // 在这里设置你使用的平台的 OAuth App 配置
                 options: {

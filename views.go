@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"strings"
 )
 
 func (y Config) ServeHTTP(uri string, w http.ResponseWriter, r *http.Request) {
@@ -53,10 +54,10 @@ func (y Config) DocList(g *gin.Context) {
 		if v.Repo == repo {
 			g.HTML(200, "list.html", gin.H{
 				"repos": y.YuQue.Repos,
-				"docs": detail,
-				"repo": repo,
-				"name": v.Name,
-				"blog": y.Blog,
+				"docs":  detail,
+				"repo":  repo,
+				"name":  v.Name,
+				"blog":  y.Blog,
 			})
 			return
 		}
@@ -78,11 +79,42 @@ func (y Config) Doc(g *gin.Context) {
 		return
 	}
 	g.HTML(200, "doc.html", gin.H{
-		"repos": y.YuQue.Repos,
-		"blog": y.Blog,
+		"repos":  y.YuQue.Repos,
+		"blog":   y.Blog,
 		"doc":    template.HTML(html),
 		"detail": detail,
 		"index":  g.Request.Host,
 		"vssue":  y.Blog.Vssue,
+	})
+}
+
+func (y Config) SearchDoc(g *gin.Context) {
+	var (
+		result []*DocDesc
+	)
+	key := g.Query("key")
+	if key == "" {
+		g.JSON(403, gin.H{
+			"success": false,
+			"msg":     "搜索词为空",
+			"data":    result,
+		})
+		return
+	}
+	docs := Search(key)
+	for _, v := range docs {
+		var item = &DocDesc{
+			Description: Cache[v].Description,
+			Name:        Cache[v].Name,
+			UpdatedAt:   Cache[v].UpdatedAt,
+			CreatedAt:   Cache[v].CreatedAt,
+			Url:         fmt.Sprintf("/%s/%s", strings.Split(Cache[v].Namespace, "/")[1], Cache[v].Slug),
+		}
+		result = append(result, item)
+	}
+	g.JSON(200, gin.H{
+		"success": true,
+		"msg":     "OK",
+		"data":    result,
 	})
 }

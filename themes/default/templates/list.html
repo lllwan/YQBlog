@@ -64,10 +64,10 @@
             </div>
             <!-- 终端内文字 -->
             <div class="cmdText">
-                <ul id="article">
+                <ul id="article" style="margin-bottom: 10px">
                     {{range $i, $v := .docs.Data}}
                     <li onclick="window.open('/Doc/{{ $.repo }}/{{ $v.Slug }}')">
-                        <img src="https://source.unsplash.com/featured/?technology,{{ $i }}" class="cover"/>
+<!--                        <img src="https://source.unsplash.com/featured/?technology,{{ $i }}" class="cover"/>-->
                         <h3>{{ $v.Title }}</h3>
                         <p>{{$v.Description}}</p>
                         <p style="color: #595959">{{ $v.UpdatedAt }}</p>
