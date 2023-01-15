@@ -97,7 +97,7 @@ blog:
   # 友情链接
   link:
       - name: "google"
-      - link: "https://www.google.com"
+        link: "https://www.google.com"
   # 留言板插件vssue的配置， 获取步骤参考：https://vssue.js.org/zh/guide/github.html#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84-oauth-app
   vssue:
     owner: "lllwan"
